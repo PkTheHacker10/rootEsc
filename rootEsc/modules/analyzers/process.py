@@ -1,0 +1,2 @@
+class ProcessAnalysis():
+    pass
