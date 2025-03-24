@@ -1,6 +1,8 @@
 import sys
 import argparse
 import requests
+from random import choice
+from art import text2art 
 from colorama import Fore,Style 
 
 red=Fore.RED
@@ -11,6 +13,9 @@ bright=Style.BRIGHT
 green=Fore.GREEN
 red=Fore.RED
 bold=Style.BRIGHT
+yellow=Fore.YELLOW
+cyan=Fore.CYAN
+mixed=Fore.BLUE+Fore.GREEN+Fore.RED
 reset=Style.RESET_ALL
 
 class CommandLine():
@@ -19,8 +24,10 @@ class CommandLine():
         parser=argparse.ArgumentParser(add_help=False,usage=argparse.SUPPRESS,exit_on_error=False)
         try:
             parser.add_argument("-nl","--no-logging",action="store_true")
+            parser.add_argument("-nc","--no-colours",action="store_true")
             parser.add_argument("-v","--version",action="store_true")
             parser.add_argument("-h","--help",action="store_true")
+            
             args=parser.parse_args()
             return args
         
@@ -32,7 +39,18 @@ class CommandLine():
             
         except Exception as e:
             print(f"{bright}{red}\n [+] {reset}{blue}Unexpected Argument Error:{e}")
-        
+            
+    def banner(self):
+        # Function to create and return the banner of the tool.
+        name="  rootESC"
+        all_fonts=["graffiti","slant","speed","ogre","Poison","Star Wars","Doom","speed","Varsity","Alligator","Rectangles","speed",]
+        all_colour=[red,blue,yellow,cyan,mixed,magenta]
+        selected_colour=choice(all_colour)
+        selected_font=choice(all_fonts)
+        print(selected_font)
+        Ascii_text=text2art(f"{name}",font=selected_font)
+        return f"\n{bright}{selected_colour}{Ascii_text}{reset}"    
+    
     def help(self):
         # Funtion to create and return the available options and flags.
         return f"""\n
@@ -43,13 +61,15 @@ class CommandLine():
                     
                 [{reset}{bold}{blue}Filters{reset}{bold}{white}]{reset}
                 
-                    -nl,   --no-logging             :  It will disable the logging  
+                    -nl,   --no-logging             :  It will disable the logging
+                    -nc,   --no-colours             :  It will disable the logging  
                         
                 {bold}{white}[{reset}{bold}{blue}Debug{reset}{bold}{white}]{reset}
                     
                     -v,   --version                 :  To check version of this tool. 
                     -h,   --help                    :  To see all the available options.
             """
+            
     def get_version(self):
         #funtion which is used to get the version (tag) from github through api.
         try:
