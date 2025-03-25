@@ -4,8 +4,12 @@ class UserAnalysis():
     def __init__(self):
         pass
     
+    def get_all_root_users(self):
+        all_root_users_output=run("awk -F: '($3 == \"0\") {print}' /etc/passwd",capture_output=True,shell=True)
+        return all_root_users_output
+    
     def get_all_users(self):
-        all_users_output=run("cat /etc/passwd ",capture_output=True,shell=True)
+        all_users_output=run(f"cat /etc/passwd | cut -d \":\" -f 1",capture_output=True,shell=True)
         return all_users_output
     
     def get_current_user_id(self):

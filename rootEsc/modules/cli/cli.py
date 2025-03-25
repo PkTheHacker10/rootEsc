@@ -47,7 +47,6 @@ class CommandLine():
         all_colour=[red,blue,yellow,cyan,mixed,magenta]
         selected_colour=choice(all_colour)
         selected_font=choice(all_fonts)
-        print(selected_font)
         Ascii_text=text2art(f"{name}",font=selected_font)
         return f"\n{bright}{selected_colour}{Ascii_text}{reset}"    
     
@@ -87,4 +86,4 @@ class CommandLine():
             
         except requests.JSONDecodeError:
             print(f"{bright}{red}\n [+] {reset} : Couldn't decode data.")
-        
+    
