@@ -17,8 +17,6 @@ class UserAnalysis():
         return user_id_output
     
     def get_sudo_privileges(self):
-        sudo_privilege_output=run("sudo -nl ",capture_output=True,shell=True)
+        sudo_privilege_output=run("sudo -nl",capture_output=True,shell=True)
         return sudo_privilege_output
     
-    def get_user_permited_files(self):
-        pass
