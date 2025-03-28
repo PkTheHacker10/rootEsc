@@ -16,16 +16,13 @@ except ImportError as Ie:
 start_time=perf_counter()
 
 red=Fore.RED
-blue=Fore.BLUE
-white=Fore.WHITE
-magenta=Fore.MAGENTA
-bright=Style.BRIGHT
 green=Fore.GREEN
+white=Fore.WHITE
+green=Fore.GREEN
+blue=Fore.BLUE
 red=Fore.RED
 bold=Style.BRIGHT
 yellow=Fore.YELLOW
-cyan=Fore.CYAN
-mixed=Fore.BLUE+Fore.GREEN+Fore.RED
 reset=Style.RESET_ALL
 
 class RootEscCore():
@@ -93,25 +90,24 @@ class RootEscCore():
 
         results = {key: future.result() for key, future in futures.items()}
         output = f"""
-{green}===== User Privilege Analysis ====={reset}
-{blue}User ID:{reset} {results["user_analysis"]['user_id']}
-{blue}Sudo Privileges:{reset}\n{results["user_analysis"]['sudo_privilege_test']}
-{blue}All Users:{reset}\n{results["user_analysis"]['all_users']}
-{blue}Root Users:{reset}\n{results["user_analysis"]['root_users']}
+{green}\t===== User Privilege Analysis ====={reset}
+{green}[ ✓ ]{reset}{blue} User ID:{reset} {results["user_analysis"]['user_id']}
+{green}\n[ ✓ ]{reset}{blue} Sudo Privileges:{reset}\n{results["user_analysis"]['sudo_privilege_test']}
+{green}\n[ ✓ ]{reset}{blue} All Users:{reset}\n{results["user_analysis"]['all_users']}
+{green}\n[ ✓ ]{reset}{blue} Root Users:{reset}\n{results["user_analysis"]['root_users']}
 
-{green}===== System Information ====={reset}
-{blue}Kernel Info:{reset} {results["system_analysis"]['kernal_info']}
-{blue}Sudo Version:{reset} {results["system_analysis"]['sudo_version']}
-{blue}Capabilities:{reset}\n{results["system_analysis"]['capabilities_info']}
-{blue}Crontab Tasks:{reset}\n{results["system_analysis"]['crontabs_info']}
+{green}\n\t===== System Information ====={reset}
+{green}\n[ ✓ ]{reset}{blue} Kernel Info:{reset} {results["system_analysis"]['kernal_info']}
+{green}\n[ ✓ ]{reset}{blue} Sudo Version:{reset} {results["system_analysis"]['sudo_version']}
+{green}\n[ ✓ ]{reset}{blue} Capabilities:{reset}\n{results["system_analysis"]['capabilities_info']}
+{green}\n[ ✓ ]{reset}{blue} Crontab Tasks:{reset}\n{results["system_analysis"]['crontabs_info']}
 
-{green}===== File Privilege Analysis ====={reset}
-{blue}SUID Binaries:{reset}\n{results["file_analysis"]['suid_bins']}
-{blue}SGID Binaries:{reset}\n{results["file_analysis"]['sgid_bins']}
-{blue}Writable Env PATH:{reset}\n{results["file_analysis"]['writable_env_path']}
+{green}\n\t===== File Privilege Analysis ====={reset}
+{green}\n[ ✓ ]{reset}{blue} SUID Binaries:{reset}\n{results["file_analysis"]['suid_bins']}
+{green}\n[ ✓ ]{reset}{blue} SGID Binaries:{reset}\n{results["file_analysis"]['sgid_bins']}
+{green}\n[ ✓ ]{reset}{blue} Writable Env PATH:{reset}\n{results["file_analysis"]['writable_env_path']}
 """
         print(output)
-        #print(results)
         end_time=perf_counter()
         print(f"Time taken to complete : {end_time-start_time}")
         #print(self.file_analysis.get_writable_permission_dirs_in_env_path().stdout)
