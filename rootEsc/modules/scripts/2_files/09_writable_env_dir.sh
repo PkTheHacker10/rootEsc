@@ -1,0 +1,1 @@
+echo $PATH | tr ":" "\n" | xargs -I {} find {} -maxdepth 0 -type d -perm -u=rw 2>/dev/null
