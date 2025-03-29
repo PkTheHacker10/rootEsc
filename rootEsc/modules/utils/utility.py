@@ -30,7 +30,3 @@ def run_command(command):
     """ Runs a command and returns the formatted output """
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     print(result.stdout.strip())
-
-if __name__ == "__main__":
-    all_file=load_files("/home/pk_server/tool-build/python/rootESC/rootEsc/modules/scripts/3_user/")
-    print(all_file)

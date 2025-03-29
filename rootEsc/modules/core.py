@@ -1,13 +1,10 @@
 try:
-    from time import perf_counter
     from colorama import Fore,Style
     from modules.cli.cli import CommandLine
     from modules.utils.utility import load_files,load_folders,run_command,get_current_working_dir
     
 except ImportError as Ie:
     print(f"Error [Core] : {Ie}")
- 
-start_time=perf_counter()
 
 red=Fore.RED
 green=Fore.GREEN
@@ -87,13 +84,11 @@ class RootEscCore():
             print(f"{red}[ ! ]{reset} Unexpected Error [Core.log_enumerator] : {Ue}")
         
     def core_handler(self):
-        end_time=perf_counter()
         self.system_enumerator()
         self.files_enumerator()
         self.process_enumerator()
         self.network_enumerator()
         self.log_enumerator()
-        print(f"Time taken to complete : {end_time-start_time:.5f} seconds")
 
     def start(self):
         self.core_handler()

@@ -39,16 +39,6 @@ class CommandLine():
             
         except Exception as e:
             print(f"{bright}{red}\n [+] {reset}{blue}Unexpected Argument Error:{e}")
-            
-    def banner(self):
-        # Function to create and return the banner of the tool.
-        name="  rootESC"
-        all_fonts=["graffiti","slant","speed","ogre","Poison","Star Wars","Doom","speed","Varsity","Alligator","Rectangles","speed",]
-        all_colour=[red,blue,yellow,cyan,mixed,magenta]
-        selected_colour=choice(all_colour)
-        selected_font=choice(all_fonts)
-        Ascii_text=text2art(f"{name}",font=selected_font)
-        return f"\n{bright}{selected_colour}{Ascii_text}{reset}"    
     
     def help(self):
         # Funtion to create and return the available options and flags.
