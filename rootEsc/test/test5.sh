@@ -1,0 +1,1 @@
+find / -type f -perm -04000 2>/dev/null
