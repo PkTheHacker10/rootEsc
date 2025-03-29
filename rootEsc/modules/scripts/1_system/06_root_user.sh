@@ -1,1 +1,0 @@
-awk -F: '($3 == "0") {print}' /etc/passwd
