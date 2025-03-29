@@ -9,7 +9,6 @@ except ImportError as Ie:
 red=Fore.RED
 green=Fore.GREEN
 blue=Fore.BLUE
-red=Fore.RED
 bold=Style.BRIGHT
 yellow=Fore.YELLOW
 reset=Style.RESET_ALL
@@ -55,6 +54,7 @@ class RootEscCore():
             for script in scripts:
                 print(f"{green}\n[ ✓ ]{reset} Enumerating {script.split(".")[0].split("_")[1]} :")
                 run_command(SCRIPTS_DIR + process_analysis_dir + "/" + script)
+
         except Exception as Ue:
             print(f"{red}[ ! ]{reset} Unexpected Error [Core.process_enumerator] : {Ue}")
 
@@ -80,6 +80,7 @@ class RootEscCore():
             for script in scripts:
                 print(f"{green}\n[ ✓ ]{reset} Enumerating {script.split(".")[0].split("_")[1]} :")
                 run_command(SCRIPTS_DIR + log_analysis_dir + "/" + script)
+
         except Exception as Ue:
             print(f"{red}[ ! ]{reset} Unexpected Error [Core.log_enumerator] : {Ue}")
         
