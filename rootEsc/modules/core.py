@@ -34,26 +34,67 @@ class RootEscCore():
                 run_command(SCRIPTS_DIR + system_analysis_dir + "/" + script)
 
         except Exception as Ue:
-            print(f"Unexpected Error [Core.user_enumerator] : {Ue}")
+            print(f"{red}[ ! ]{reset} Unexpected Error [Core.system_enumerator] : {Ue}")
     
     def files_enumerator(self):
-        all_folders=sorted(load_folders(SCRIPTS_DIR))
-        files_analysis_dir = all_folders[1]
-        scripts = sorted(load_files(SCRIPTS_DIR + files_analysis_dir + "/"))
-        print(f"\n{blue}       ═══════════════{reset} Files enumeration started {blue}═══════════════{reset}")
-        for script in scripts:
-            print(f"{green}\n[ ✓ ]{reset} Enumerating {script.split(".")[0].split("_")[1]} :")
-            run_command(SCRIPTS_DIR + files_analysis_dir + "/" + script)
+        try:
+            all_folders=sorted(load_folders(SCRIPTS_DIR))
+            files_analysis_dir = all_folders[1]
+            scripts = sorted(load_files(SCRIPTS_DIR + files_analysis_dir + "/"))
+            print(f"\n{blue}       ═══════════════{reset} Files enumeration started {blue}═══════════════{reset}")
+            for script in scripts:
+                print(f"{green}\n[ ✓ ]{reset} Enumerating {script.split(".")[0].split("_")[1]} :")
+                run_command(SCRIPTS_DIR + files_analysis_dir + "/" + script)
+
+        except Exception as Ue:
+            print(f"{red}[ ! ]{reset} Unexpected Error [Core.file_enumerator] : {Ue}")
+
+    def process_enumerator(self):
+        try:
+            all_folders=sorted(load_folders(SCRIPTS_DIR))
+            process_analysis_dir = all_folders[2]
+            scripts = sorted(load_files(SCRIPTS_DIR + process_analysis_dir + "/"))
+            print(f"\n{blue}       ═══════════════{reset} Process enumeration started {blue}═══════════════{reset}")
+            for script in scripts:
+                print(f"{green}\n[ ✓ ]{reset} Enumerating {script.split(".")[0].split("_")[1]} :")
+                run_command(SCRIPTS_DIR + process_analysis_dir + "/" + script)
+        except Exception as Ue:
+            print(f"{red}[ ! ]{reset} Unexpected Error [Core.process_enumerator] : {Ue}")
+
+    def network_enumerator(self):
+        try:
+            all_folders=sorted(load_folders(SCRIPTS_DIR))
+            network_analysis_dir = all_folders[3]
+            scripts = sorted(load_files(SCRIPTS_DIR + network_analysis_dir + "/"))
+            print(f"\n{blue}       ═══════════════{reset} Network enumeration started {blue}═══════════════{reset}")
+            for script in scripts:
+                print(f"{green}\n[ ✓ ]{reset} Enumerating {script.split(".")[0].split("_")[1]} :")
+                run_command(SCRIPTS_DIR + network_analysis_dir + "/" + script)
+
+        except Exception as Ue:
+            print(f"{red}[ ! ]{reset} Unexpected Error [Core.network_enumerator] : {Ue}")
+
+    def log_enumerator(self):
+        try:
+            all_folders=sorted(load_folders(SCRIPTS_DIR))
+            log_analysis_dir = all_folders[4]
+            scripts = sorted(load_files(SCRIPTS_DIR + log_analysis_dir + "/"))
+            print(f"\n{blue}       ═══════════════{reset} Log enumeration started {blue}═══════════════{reset}")
+            for script in scripts:
+                print(f"{green}\n[ ✓ ]{reset} Enumerating {script.split(".")[0].split("_")[1]} :")
+                run_command(SCRIPTS_DIR + log_analysis_dir + "/" + script)
+        except Exception as Ue:
+            print(f"{red}[ ! ]{reset} Unexpected Error [Core.log_enumerator] : {Ue}")
         
     def core_handler(self):
         end_time=perf_counter()
         self.system_enumerator()
         self.files_enumerator()
-        print(f"Time taken to complete : {end_time-start_time}")
+        self.process_enumerator()
+        self.network_enumerator()
+        self.log_enumerator()
+        print(f"Time taken to complete : {end_time-start_time:.5f} seconds")
 
     def start(self):
         self.core_handler()
         
-if __name__ == "__main__":
-    core=RootEscCore()
-    core.core_handler()

@@ -1,0 +1,1 @@
+ps -au --sort=-pcpu | head

@@ -1,0 +1,1 @@
+ps aux | awk '$1 == "root" && $2 $11 !~ "systemd|bash|sshd" {print "User: " $1 " - ","PID: " $2 ,"Proc_CMD: " $11} '
